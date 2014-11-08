@@ -1,0 +1,26 @@
+{
+  "name": "crow",
+  "main": "app.js",
+  "version": "0.0.0",
+  "authors": [ "David Rouchy <drouchy@gmail.com" ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "json3": "~3.3.1",
+    "es5-shim": "~3.1.0",
+    "bootstrap": "~3.2.0",
+    "underscore": "1.6.0",
+    "momentjs": "2.7.0",
+    "font-awesome": "4.2.0"
+  },
+  "devDependencies": {
+  }
+}
+
