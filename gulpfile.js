@@ -10,7 +10,7 @@ var less      = require('gulp-less');
 var karma     = require('gulp-karma');
 
 gulp.task('appJS', function() {
-  gulp.src(['./web/app/scripts/**/*.js','./web/app/scripts/**/*.coffee'])
+  gulp.src(['./js_app/scripts/**/*.js','./js_app/scripts/**/*.coffee'])
     .pipe(gulpif(/[.]coffee$/, coffee({bare: true}).on('error', gutil.log)))
     .pipe(concat('application.js'))
     .pipe(gulp.dest('./priv/static/scripts'))
@@ -37,7 +37,7 @@ gulp.task('test', function() {
 });
 
 gulp.task('templates', function() {
-  gulp.src(['./web/app/views/**/*.jade'])
+  gulp.src(['./js_app/views/**/*.jade'])
     .pipe(gulpif(/[.]jade$/, jade().on('error', gutil.log)))
     .pipe(tplCache('templates.js',{standalone:false, root: '/views', module: 'reInspectorWebApp'}))
     .pipe(gulp.dest('./priv/static/scripts'))
@@ -58,7 +58,7 @@ gulp.task('fonts', function() {
       'bower_components/font-awesome/fonts/fontawesome-webfont.*',
       'bower_components/bootstrap/fonts/glyphicons-halflings-regular.*'
     ])
-    .pipe(gulp.dest('./priv/static/styles/fonts'));
+    .pipe(gulp.dest('./priv/static/fonts'));
 });
 
 gulp.task('appCSS', function() {
@@ -74,6 +74,7 @@ gulp.task('libJS', function() {
     'bower_components/jquery/dist/jquery.js',
     'bower_components/json3/lib/json3.js',
     'bower_components/underscore/underscore.js',
+    'bower_components/bootstrap/dist/js/bootstrap.js',
     'bower_components/momentjs/moment.js'
     ]).pipe(concat('vendor.js'))
       .pipe(gulp.dest('./priv/static/scripts'));
@@ -98,10 +99,10 @@ gulp.task('watch',function() {
   });
 
   // watch files to build
-  gulp.watch(['./web/app/scripts/**/*.coffee'], ['appJS', 'test']);
+  gulp.watch(['./js_app/scripts/**/*.coffee'], ['appJS', 'test']);
   gulp.watch(['./test/web/**/*_test.coffee'],   ['test']);
-  gulp.watch(['./web/app/views/**/*.jade'],     ['templates']);
-  gulp.watch(['./web/app/styles/**/*.less'],    ['appCSS']);
+  gulp.watch(['./js_app/views/**/*.jade'],     ['templates']);
+  gulp.watch(['./js_app/styles/**/*.less'],    ['appCSS']);
 });
 
 gulp.task('default', ['appJS', 'templates', 'appCSS', 'libCSS', 'fonts', 'index', 'libJS', 'libCSS']);
